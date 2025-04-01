@@ -1,12 +1,9 @@
 name: mcp-server-tess
-description: >-
-  Servidor MCP para integração com a API TESS, permitindo utilizar agentes TESS
-  via MCP. Disponibiliza ferramentas para listar agentes, executar agentes, verificar
-  status de execuções e fazer upload de arquivos para a plataforma TESS.
 version: 1.0.1
-startCommand:
-  type: stdio
-  configSchema:
+description: Servidor MCP para integração com a API TESS, permitindo utilizar agentes TESS via MCP. Disponibiliza ferramentas para listar agentes, executar agentes, verificar status de execuções e fazer upload de arquivos para a plataforma TESS.
+
+config:
+  schema:
     type: object
     required:
       - TESS_API_KEY
@@ -22,18 +19,16 @@ startCommand:
         type: integer
         description: "Porta para o servidor MCP"
         default: 3001
-  commandFunction: |-
-    config => {
-      return {
-        command: 'node', 
-        args: ['src/index.js'], 
-        env: {
-          TESS_API_KEY: config.TESS_API_KEY,
-          TESS_API_URL: config.TESS_API_URL,
-          PORT: config.PORT
-        }
-      }
-    }
+
+start:
+  command: node
+  args: 
+    - src/index.js
+  env:
+    TESS_API_KEY: ${config.TESS_API_KEY}
+    TESS_API_URL: ${config.TESS_API_URL}
+    PORT: ${config.PORT}
+
 keywords:
   - tess
   - mcp
