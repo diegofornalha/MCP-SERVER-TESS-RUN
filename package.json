@@ -1,0 +1,55 @@
+{
+  "name": "mcp-server-tess",
+  "version": "1.0.1",
+  "description": "Servidor MCP para integração com a API TESS, permitindo utilizar agentes TESS via MCP",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "setup": "./scripts/setup.sh",
+    "build": "echo \"No build step required for JavaScript project\"",
+    "smithery:build": "npm install",
+    "smithery:publish": "npx @smithery/cli@latest publish",
+    "format": "prettier --write \"src/**/*.js\"",
+    "docker:build": "docker build -t mcp-server-tess:latest .",
+    "docker:run": "docker run -p 3001:3001 --env-file .env mcp-server-tess:latest",
+    "example:js": "node examples/integrar_mcp_tess.js",
+    "example:py": "python examples/integrar_mcp_tess.py",
+    "test": "echo \"No tests implemented yet\""
+  },
+  "keywords": [
+    "tess",
+    "mcp",
+    "ai",
+    "api",
+    "smithery",
+    "model-context-protocol"
+  ],
+  "author": "TESS Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegofornalha/mcp-server-tess.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diegofornalha/mcp-server-tess/issues"
+  },
+  "homepage": "https://github.com/diegofornalha/mcp-server-tess#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "form-data": "^4.0.2",
+    "js-yaml": "^4.1.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
